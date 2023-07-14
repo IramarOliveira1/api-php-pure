@@ -20,7 +20,6 @@ $router->delete('/produto/:id', [ProductController::class, 'delete']);
 $router->get('/produto/:id', [ProductController::class, 'index']);
 $router->put('/produto/:id', [ProductController::class, 'update']);
 
-
 $router->get('/categoria', [CategoryController::class, 'all']);
 $router->post('/categoria', [CategoryController::class, 'store']);
 $router->delete('/categoria/:id', [CategoryController::class, 'delete']);
