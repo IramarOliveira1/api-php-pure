@@ -2,17 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Services\CategoryService;
 use App\Services\GenericService;
-use App\Services\ProductService;
 
-class ProductController
+class CategoryController
 {
     private $service;
     private $request;
 
     public function __construct()
     {
-        $this->service = new ProductService;
+        $this->service = new CategoryService;
         if (!empty(file_get_contents('php://input'))) {
             $this->request = new GenericService(file_get_contents('php://input'));
         }

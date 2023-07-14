@@ -2,16 +2,16 @@
 
 namespace App\Services;
 
-use App\Repositories\ProductRepository;
+use App\Repositories\CategoryRepository;
 use Exception;
 
-class ProductService
+class CategoryService
 {
     private $repository;
 
     public function __construct()
     {
-        $this->repository = new ProductRepository;
+        $this->repository = new CategoryRepository;
     }
 
     public function all()
@@ -23,13 +23,13 @@ class ProductService
     {
         return $this->repository->findOne($id);
     }
-
+    
     public function store($request)
     {
         try {
             $this->repository->save($request);
 
-            return json_encode(['message' => 'Produto criado com sucesso!', 'error' => false]);
+            return json_encode(['message' => 'Categoria criada com sucesso!', 'error' => false]);
         } catch (Exception $e) {
             return json_encode(['message' => $e->getMessage(), 'error' => true]);
         }
@@ -40,7 +40,7 @@ class ProductService
         try {
             $this->repository->update($request, $id);
 
-            return json_encode(['message' => 'Produto atualizado com sucesso!', 'error' => false]);
+            return json_encode(['message' => 'Categoria atualizado com sucesso!', 'error' => false]);
         } catch (Exception $e) {
             return json_encode(['message' => $e->getMessage(), 'error' => true]);
         }
@@ -51,7 +51,7 @@ class ProductService
         try {
             $this->repository->destroy($id);
 
-            return json_encode(['message' => 'Produto excluido com sucesso!', 'error' => false]);
+            return json_encode(['message' => 'Categoria excluido com sucesso!', 'error' => false]);
         } catch (Exception $e) {
             return json_encode(['message' => $e->getMessage(), 'error' => true]);
         }
