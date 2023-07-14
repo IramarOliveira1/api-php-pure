@@ -13,11 +13,11 @@ $router = new Router([
     'debug' => true,
 ]);
 
-$router->get('/', [ProductController::class, 'all']);
-$router->post('/', [ProductController::class, 'store']);
-$router->delete('/:id', [ProductController::class, 'delete']);
-// $router->get('/:id', [ProductController::class, 'index']);
-// $router->update('/', [ProductController::class, 'all']);
+$router->get('/produto', [ProductController::class, 'all']);
+$router->post('/produto', [ProductController::class, 'store']);
+$router->delete('/produto/:id', [ProductController::class, 'delete']);
+$router->get('/produto/:id', [ProductController::class, 'index']);
+$router->put('/produto/:id', [ProductController::class, 'update']);
 
 
 $router->run();

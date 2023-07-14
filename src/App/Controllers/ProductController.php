@@ -7,14 +7,14 @@ use App\Services\ProductService;
 
 class ProductController
 {
-    protected $service;
-    protected $request;
+    private $service;
+    private $request;
 
     public function __construct()
     {
         $this->service = new ProductService;
         if (!empty(file_get_contents('php://input'))) {
-            $this->request = GenericService::request(file_get_contents('php://input'));
+            $this->request = new GenericService(file_get_contents('php://input'));
         }
     }
 
@@ -29,7 +29,14 @@ class ProductController
     }
     public function store()
     {
-        return $this->service->store($this->request);
+        $values = $this->request->request();
+        return $this->service->store($values);
+    }
+
+    public function update(int $id)
+    {
+        $values = $this->request->mountedUpdate();
+        return $this->service->update($values, $id);
     }
 
     public function delete(int $id)
