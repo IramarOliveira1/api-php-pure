@@ -27,7 +27,7 @@ CREATE TABLE `usuario` (
 	`email` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_general_ci',
 	`senha` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_general_ci',
 	`perfil` VARCHAR(30) NOT NULL COLLATE 'utf8mb4_general_ci',
-	`id_endereco` INT(11) NOT NULL,
+	`id_endereco` INT(11) NULL DEFAULT NULL,
 	PRIMARY KEY (`id`) USING BTREE,
 	UNIQUE INDEX `email` (`email`) USING BTREE,
 	UNIQUE INDEX `cpf` (`cpf`) USING BTREE,

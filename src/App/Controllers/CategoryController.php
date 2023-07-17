@@ -30,13 +30,13 @@ class CategoryController
     
     public function store()
     {
-        $values = $this->request->request();
+        $values = $this->request->request($this->request->request);
         return $this->service->store($values);
     }
 
     public function update(int $id)
     {
-        $values = $this->request->mountedUpdate();
+        $values = $this->request->mountedUpdate($this->request->request);
         return $this->service->update($values, $id);
     }
 

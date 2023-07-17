@@ -33,5 +33,4 @@ $router->delete('/usuario/:id', [UserController::class, 'delete']);
 $router->get('/usuario/:id', [UserController::class, 'index']);
 $router->put('/usuario/:id', [UserController::class, 'update']);
 
-
 $router->run();

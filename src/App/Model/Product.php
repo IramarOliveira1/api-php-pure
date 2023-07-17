@@ -5,5 +5,5 @@ namespace App\Model;
 class Product
 {
     public $table = 'produto';
-    public $fields = 'nome, descricao, url_imagem, preco';
+    public $fields = 'nome, descricao, url_imagem, preco, id_caracteristica';
 }

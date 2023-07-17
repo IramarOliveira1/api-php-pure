@@ -30,14 +30,13 @@ class UserController
 
     public function store()
     {
-        $values = $this->request->request();
+        $values = $this->request->request($this->request->request);
         return $this->service->store($values);
     }
 
     public function update(int $id)
     {
-        $values = $this->request->mountedUpdate();
-        return $this->service->update($values, $id);
+        return $this->service->update($this->request, $id);
     }
 
     public function delete(int $id)

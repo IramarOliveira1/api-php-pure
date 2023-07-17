@@ -4,28 +4,30 @@ namespace App\Services;
 
 class GenericService
 {
-    private $request;
+    public $request;
     public function __construct($request)
     {
         $this->request = json_decode($request);
     }
-    public function request()
+    public function request($request)
     {
         $values = [];
 
-        foreach ($this->request as $value) {
+        foreach ($request as $value) {
             $values[] =  $value;
         }
 
-        $values = implode("','", $values);
+        $filter = array_filter($values);
+
+        $values = implode("','", $filter);
 
         return $values;
     }
-    public function mountedUpdate()
+    public function mountedUpdate($request)
     {
         $fieldsAndValues = '';
 
-        foreach ($this->request as $key => $value) {
+        foreach ($request as $key => $value) {
             $fieldsAndValues = $fieldsAndValues . $key . " = " . "'$value'" . " , ";
         }
 

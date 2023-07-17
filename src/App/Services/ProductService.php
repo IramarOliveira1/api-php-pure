@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Repositories\CaracteristicRepository;
 use App\Repositories\ProductRepository;
 use Exception;
 
@@ -9,9 +10,12 @@ class ProductService
 {
     private $repository;
 
+    private $caracteristic;
+
     public function __construct()
     {
         $this->repository = new ProductRepository;
+        $this->caracteristic = new CaracteristicRepository;
     }
 
     public function all()
@@ -49,7 +53,12 @@ class ProductService
     public function delete($id)
     {
         try {
+
+            $id_caracteristic = $this->repository->findOne($id);
+
             $this->repository->destroy($id);
+
+            $this->caracteristic->destroy($id_caracteristic[0]['id_caracteristica']);
 
             return json_encode(['message' => 'Produto excluido com sucesso!', 'error' => false]);
         } catch (Exception $e) {
