@@ -30,14 +30,12 @@ class ProductController
     
     public function store()
     {
-        $values = $this->request->request($this->request->request);
-        return $this->service->store($values);
+        return $this->service->store($this->request);
     }
 
     public function update(int $id)
     {
-        $values = $this->request->mountedUpdate($this->request->request);
-        return $this->service->update($values, $id);
+        return $this->service->update($this->request, $id);
     }
 
     public function delete(int $id)

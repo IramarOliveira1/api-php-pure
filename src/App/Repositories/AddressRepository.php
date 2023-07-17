@@ -18,7 +18,7 @@ class AddressRepository extends GenericRepository
         $this->connection = Connection::getInstance();
     }
 
-     public function save($request)
+    public function save($request)
     {
         $query = "INSERT INTO {$this->address->table} ({$this->address->fields}) VALUES ('$request')";
         $this->connection->exec($query);

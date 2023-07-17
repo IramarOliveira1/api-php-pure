@@ -53,7 +53,8 @@ CREATE TABLE `caracteristica` (
 	`fabricante` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
 	`cor` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
 	`codigo` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
-	PRIMARY KEY (`id`) USING BTREE
+	PRIMARY KEY (`id`) USING BTREE,
+	UNIQUE INDEX `codigo` (`codigo`) USING BTREE
 )
 COLLATE='utf8mb4_general_ci'
 ENGINE=InnoDB

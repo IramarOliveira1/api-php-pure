@@ -2,11 +2,12 @@
 
 namespace App\Services;
 
+use App\Interface\GenericInterface;
 use App\Repositories\AddressRepository;
 use App\Repositories\UserRepository;
 use Exception;
 
-class UserService extends GenericService
+class UserService extends GenericService implements GenericInterface
 {
     private $repository;
     private $address;
@@ -41,7 +42,7 @@ class UserService extends GenericService
     public function update($request, $id)
     {
         try {
-            $this->createOrUpdateAddress($request);
+            $this->createOrUpdate($request);
 
             $user = $this->mountedUpdate($request->request->user);
 
@@ -69,7 +70,7 @@ class UserService extends GenericService
         }
     }
 
-    public function createOrUpdateAddress($request)
+    public function createOrUpdate($request)
     {
         try {
 
