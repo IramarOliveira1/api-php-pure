@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Interface\GenericInterface;
+use App\Repositories\PivotProductCategoryRepository;
 use App\Repositories\CaracteristicRepository;
 use App\Repositories\ProductRepository;
 use Exception;
@@ -13,10 +14,13 @@ class ProductService extends GenericService implements GenericInterface
 
     private $caracteristic;
 
+    private $pivot;
+
     public function __construct()
     {
         $this->repository = new ProductRepository;
         $this->caracteristic = new CaracteristicRepository;
+        $this->pivot = new PivotProductCategoryRepository;
     }
 
     public function all()
@@ -38,7 +42,9 @@ class ProductService extends GenericService implements GenericInterface
 
             $product = $this->createOrUpdate($mountedObject);
 
-            $this->repository->save($product);
+            $id = $this->repository->save($product);
+
+            $this->savePivot($request, $id);
 
             return json_encode(['message' => 'Produto criado com sucesso!', 'error' => false]);
         } catch (Exception $e) {
@@ -159,6 +165,17 @@ class ProductService extends GenericService implements GenericInterface
             return ['name' => "/assets/image/{$_FILES['url_imagem']['name']}", 'extension' => $extension, 'upload' => $upload];
         } catch (Exception $e) {
             return json_encode(['message' => $e->getMessage(), 'error' => true]);
+        }
+    }
+    public function savePivot($request, $id)
+    {
+        foreach ($request['categoria'] as  $value) {
+            $object = [
+                'id_produto' => $id,
+                'id_categoria' => $value
+            ];
+            $data = $this->request($object);
+            $this->pivot->save($data);
         }
     }
 }
