@@ -14,7 +14,7 @@ class GenericService
         $values = [];
 
         foreach ($request as $value) {
-            $values[] =  $value;
+            $values[] = $value;
         }
 
         $filter = array_filter($values);

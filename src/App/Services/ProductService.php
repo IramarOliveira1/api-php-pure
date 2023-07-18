@@ -169,11 +169,12 @@ class ProductService extends GenericService implements GenericInterface
     }
     public function savePivot($request, $id)
     {
-        foreach ($request['categoria'] as  $value) {
+        foreach ($request['categoria'] as $id_categoria) {
             $object = [
                 'id_produto' => $id,
-                'id_categoria' => $value
+                'id_categoria' => $id_categoria
             ];
+    
             $data = $this->request($object);
             $this->pivot->save($data);
         }

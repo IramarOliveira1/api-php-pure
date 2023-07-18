@@ -81,7 +81,6 @@ CREATE TABLE `pedido` (
 	`id_produto` INT(11) NOT NULL,
 	`id_usuario` INT(11) NOT NULL,
 	PRIMARY KEY (`id`) USING BTREE,
-	UNIQUE INDEX `codigo` (`codigo`) USING BTREE,
 	INDEX `FK_pedido_produto` (`id_produto`) USING BTREE,
 	INDEX `FK_pedido_usuario` (`id_usuario`) USING BTREE,
 	CONSTRAINT `FK_pedido_produto` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,

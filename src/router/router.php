@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\CategoryController;
+use App\Controllers\OrderController;
 use App\Controllers\ProductController;
 use App\Controllers\UserController;
 use Buki\Router\Router;
@@ -31,6 +32,8 @@ $router->get('/usuario', [UserController::class, 'all']);
 $router->post('/usuario', [UserController::class, 'store']);
 $router->delete('/usuario/:id', [UserController::class, 'delete']);
 $router->get('/usuario/:id', [UserController::class, 'index']);
-$router->put('/usuario/:id', [UserController::class, 'update']);
+
+$router->post('/pedido/:id', [OrderController::class, 'setOrder']);
+$router->get('/pedido/:id', [OrderController::class, 'all']);
 
 $router->run();
