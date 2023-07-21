@@ -80,9 +80,12 @@ CREATE TABLE `pedido` (
 	`codigo` BIGINT(20) NOT NULL,
 	`id_produto` INT(11) NOT NULL,
 	`id_usuario` INT(11) NOT NULL,
+	`id_endereco` INT(11) NOT NULL,
 	PRIMARY KEY (`id`) USING BTREE,
 	INDEX `FK_pedido_produto` (`id_produto`) USING BTREE,
 	INDEX `FK_pedido_usuario` (`id_usuario`) USING BTREE,
+	INDEX `FK_pedido_endereco` (`id_endereco`) USING BTREE,
+	CONSTRAINT `FK_pedido_endereco` FOREIGN KEY (`id_endereco`) REFERENCES `endereco` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
 	CONSTRAINT `FK_pedido_produto` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
 	CONSTRAINT `FK_pedido_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
 )
